@@ -16,27 +16,34 @@ import com.apap.tutorial5.service.PilotService;
 @Controller
 public class FlightController {
 
-	@Autowired
-	private FlightService flightService;
-	
-	@Autowired
-	private PilotService pilotService;
-	
-	@RequestMapping(value="/flight/add/{licenseNumber}", method=RequestMethod.GET)
-	private String add(@PathVariable(value="licenseNumber") String licenseNumber, Model model) {
-		FlightModel flight = new FlightModel();
-		PilotModel pilot = pilotService.getPilotDetailByLicenseNumber(licenseNumber);
-		flight.setPilot(pilot);
-		
-		model.addAttribute("flight", flight);
-		return "addFlight";
-	}
-	
-	@RequestMapping(value="/flight/add", method=RequestMethod.POST)
-	private String addFlightSubmit(@ModelAttribute FlightModel flight) {
-		flightService.addFlight(flight);
-		return "add";
-	}
-	
-	
+    @Autowired
+    private FlightService flightService;
+    
+    @Autowired
+    private PilotService pilotService;
+    
+    @RequestMapping(value="/flight/add/{licenseNumber}", method=RequestMethod.GET)
+    private String add(@PathVariable(value="licenseNumber") String licenseNumber, Model model) {
+        FlightModel flight = new FlightModel();
+        PilotModel pilot = pilotService.getPilotDetailByLicenseNumber(licenseNumber);
+        flight.setPilot(pilot);
+        
+        model.addAttribute("flight", flight);
+        return "addFlight";
+    }
+    
+    @RequestMapping(value="/flight/add", method=RequestMethod.POST)
+    private String addFlightSubmit(@ModelAttribute FlightModel flight) {
+        flightService.addFlight(flight);
+        return "add";
+    }
+
+    @RequestMapping(value = "/flight/delete", method = RequestMethod.POST)
+    private String deleteFlight(@ModelAttribute PilotModel pilot, Model model) {
+        for(FlightModel flight : pilot.getPilotFlight()) {
+            flightService.deleteFlightById(flight.getId());
+        }
+
+        return "delete-pilot";
+    }
 }

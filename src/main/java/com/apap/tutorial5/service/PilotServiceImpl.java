@@ -11,26 +11,26 @@ import com.apap.tutorial5.repository.PilotDb;
 @Service
 @Transactional
 public class PilotServiceImpl implements PilotService {
-	
-	@Autowired
-	private PilotDb pilotDb;
+    
+    @Autowired
+    private PilotDb pilotDb;
 
-	@Override
-	public PilotModel getPilotDetailByLicenseNumber(String licenseNumber) {
-		// TODO Auto-generated method stub
-		return pilotDb.findByLicenseNumber(licenseNumber);
-	}
+    @Override
+    public PilotModel getPilotDetailByLicenseNumber(String licenseNumber) {
+        // TODO Auto-generated method stub
+        return pilotDb.findByLicenseNumber(licenseNumber);
+    }
 
-	@Override
-	public void addPilot(PilotModel pilot) {
-		// TODO Auto-generated method stub
-		pilotDb.save(pilot);
-	}
+    @Override
+    public void addPilot(PilotModel pilot) {
+        // TODO Auto-generated method stub
+        pilotDb.save(pilot);
+    }
 
-	@Override
-	public void deletePilot(PilotModel pilot) {
-		// TODO Auto-generated method stub
-		pilotDb.delete(pilot);
-	}
+    @Override
+    public void deletePilot(PilotModel pilot) {
+        // TODO Auto-generated method stub
+        pilotDb.delete(pilot);
+    }
 
 }

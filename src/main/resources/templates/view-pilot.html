@@ -1,21 +1,24 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-	<head>
-		<title>View Detail</title>
-	</head>
-	<body>
-		<h3 th:text="${pilot.id}"></h3>
-		<h3 th:text="${pilot.licenseNumber}"></h3>
-		<h3 th:text="${pilot.name}"></h3>
-		<h3 th:text="${pilot.flyHour}"></h3>
-		<a th:href="@{/flight/add/}+${pilot.licenseNumber}">Add Flight</a>
-		
-		<div th:each="flight : ${listOfFlight}">
-			<h3 th:text="${flight.id}"></h3>
-			<h3 th:text="${flight.flightNumber}"></h3>
-			<h3 th:text="${flight.origin}"></h3>
-			<h3 th:text="${flight.destination}"></h3>
-			<h3 th:text="${flight.time}"></h3>
-		</div>
-	</body>
+    <head>
+        <title>View Detail</title>
+        <object th:include="fragments/fragment :: css" th:remove="tag"></object>
+        <object th:include="fragments/fragment :: js" th:remove="tag"></object>
+    </head>
+    <body>
+        <nav th:replace="fragments/fragment :: navbar"></nav>
+        <h3 th:text="${pilot.id}"></h3>
+        <h3 th:text="${pilot.licenseNumber}"></h3>
+        <h3 th:text="${pilot.name}"></h3>
+        <h3 th:text="${pilot.flyHour}"></h3>
+        <a th:href="@{/flight/add/}+${pilot.licenseNumber}">Add Flight</a>
+        
+        <div th:each="flight : ${listOfFlight}">
+            <h3 th:text="${flight.id}"></h3>
+            <h3 th:text="${flight.flightNumber}"></h3>
+            <h3 th:text="${flight.origin}"></h3>
+            <h3 th:text="${flight.destination}"></h3>
+            <h3 th:text="${flight.time}"></h3>
+        </div>
+    </body>
 </html>
