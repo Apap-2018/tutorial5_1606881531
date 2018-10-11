@@ -1,0 +1,5 @@
+1. Aspek Dinamis
+Saya menambahkan sebuah th:text di dalam fragment navbar sebagai berikut
+<a class="navbar-brand" th:text="${pageTitle} == null ? 'APAP' : ${pageTitle}" href="#"></a>
+
+Bila tidak ada nama untuk view tersebut, maka akan revert menjadi 'APAP' sebagai default. Variable pageTitle di ubah di dalam setiap fungsi view di dalam kontroler.

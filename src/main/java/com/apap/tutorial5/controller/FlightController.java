@@ -27,7 +27,8 @@ public class FlightController {
         FlightModel flight = new FlightModel();
         PilotModel pilot = pilotService.getPilotDetailByLicenseNumber(licenseNumber);
         flight.setPilot(pilot);
-        
+
+        model.addAttribute("pageTitle", "Add Flight");
         model.addAttribute("flight", flight);
         return "addFlight";
     }
@@ -40,6 +41,7 @@ public class FlightController {
 
     @RequestMapping(value = "/flight/delete", method = RequestMethod.POST)
     private String deleteFlight(@ModelAttribute PilotModel pilot, Model model) {
+        model.addAttribute("pageTitle", "Delete Flight");
         for(FlightModel flight : pilot.getPilotFlight()) {
             flightService.deleteFlightById(flight.getId());
         }

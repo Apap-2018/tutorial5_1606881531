@@ -23,29 +23,29 @@ public class PilotController {
     private PilotService pilotService;
     
     @RequestMapping("/")
-    private String home() {
+    private String home(Model model) {
+        model.addAttribute("pageTitle", "My APAP Home");
+
         return "home";
     }
     
     @RequestMapping(value="/pilot/add", method=RequestMethod.GET)
     private String add(Model model) {
+        model.addAttribute("pageTitle", "Add Pilot");
         model.addAttribute("pilot", new PilotModel());
         return "addPilot";
     }
     
     @RequestMapping(value="/pilot/add", method=RequestMethod.POST)
     private String addPilotSubmit(@ModelAttribute PilotModel pilot) {
-        pilotService.addPilot(pilot);;
+        pilotService.addPilot(pilot);
         return "add";
     }
 
-    // TODO: '/pilot/view' tolong diubah sesuai dengan di laboratorium
-
-    @RequestMapping("/pilot/view")
+    @RequestMapping(value = "/pilot/view", method=RequestMethod.GET)
     public String view(@RequestParam("licenseNumber") String licenseNumber, Model model) {
         PilotModel pilot = pilotService.getPilotDetailByLicenseNumber(licenseNumber);
-        List<FlightModel> listOfFlight = pilot.getPilotFlight();
-        model.addAttribute("listOfFlight", listOfFlight);
+        model.addAttribute("pageTitle", "View Pilot");
         model.addAttribute("pilot", pilot);
         return "view-pilot";
     }
@@ -60,9 +60,10 @@ public class PilotController {
     @RequestMapping(value="/pilot/update", method=RequestMethod.GET)
     public String update(@RequestParam("licenseNumber") String licenseNumber, Model model) {
         PilotModel pilot = pilotService.getPilotDetailByLicenseNumber(licenseNumber);
-        
+
         if(pilot != null) {
             model.addAttribute("pilot", pilot);
+            model.addAttribute("pageTitle", "Update Pilot");
             return "updatePilot";
         } else {
             return "not-found";
@@ -75,7 +76,4 @@ public class PilotController {
         pilotService.addPilot(pilot);
         return "update";
     }
-    
-    
-    
 }
