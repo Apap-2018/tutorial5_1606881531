@@ -13,10 +13,10 @@
         <h3 th:text="${pilot.flyHour} >= 100 ? 'Status Pilot Senior' : 'Status : Pilot Junior'"></h3>
 
         <!--Pilot Related Form-->
-        <form th:action="@{'/flight/update/' + ${pilot.id}}">
+        <form th:action="@{'/pilot/update/' + ${pilot.id}}">
             <button type="submit">Update Pilot</button>
         </form>
-        <form th:action="@{'/flight/delete/' + ${pilot.id}}">
+        <form th:action="@{'/pilot/delete/' + ${pilot.id}}">
             <button type="submit">Delete Pilot</button>
         </form>
 

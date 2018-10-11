@@ -45,7 +45,6 @@ public class FlightController {
         for(FlightModel flight : pilot.getPilotFlight()) {
             flightService.deleteFlightById(flight.getId());
         }
-
         return "delete-pilot";
     }
 }
